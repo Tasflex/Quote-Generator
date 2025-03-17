@@ -4,6 +4,15 @@ const quantumLoader = document.querySelector('.quantum-loader');
 let currentMood = 'celestial';
 let quoteInterval;
 
+
+// Update quote display in script.js
+function displayQuantumQuote() {
+    const quoteElement = document.getElementById('quote');
+    quoteElement.classList.remove('quote-enter');
+    void quoteElement.offsetWidth; // Trigger reflow
+    quoteElement.classList.add('quote-enter');
+}
+
 function activateMatrixFlow() {
     const moods = Object.keys(quoteMatrix);
     let moodIndex = 0;
@@ -37,6 +46,14 @@ moodNodes.forEach(node => {
         clearInterval(quoteInterval);
         displayQuantumQuote();
         activateMatrixFlow();
+    });
+});
+
+
+// Add to script.js
+moodNodes.forEach(node => {
+    node.addEventListener('mouseenter', () => {
+        document.getElementById('hover-sound').play();
     });
 });
 

@@ -23,6 +23,49 @@ body {
     overflow: hidden;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    width: 200vw;
+    height: 200vh;
+    background: 
+        radial-gradient(2px 2px at 40% 40%, #fff 90%, transparent),
+        radial-gradient(2px 2px at 60% 60%, #00f3ff 90%, transparent);
+    background-size: 200px 200px;
+    opacity: 0.3;
+    animation: stars 100s linear infinite;
+}
+
+
+body:hover::after {
+    content: '';
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--neon-blue);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: 
+        cursor-pulse 2s infinite,
+        cursor-trail 0.3s linear infinite;
+}
+
+@keyframes cursor-pulse {
+    0%, 100% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+@keyframes cursor-trail {
+    from { transform: translate(-50%, -50%); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes stars {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-100px, -100px); }
+}
+
+
 .particles {
     position: fixed;
     width: 200vw;
@@ -93,6 +136,20 @@ body {
     box-shadow: 0 0 20px var(--cyber-purple);
 }
 
+
+.mood-node:hover::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, 
+        var(--neon-blue), 
+        var(--neon-purple),
+        var(--neon-blue));
+    z-index: -1;
+    filter: blur(5px);
+    animation: gradient-spin 2s linear infinite;
+}
+
 .quote-matrix {
     position: relative;
     padding: 2rem;
@@ -101,6 +158,20 @@ body {
     min-height: 300px;
     overflow: hidden;
 }
+
+
+/* Add to CSS */
+.quote-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.quote-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 
 .quantum-loader {
     display: none;
